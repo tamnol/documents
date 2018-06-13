@@ -1,0 +1,283 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\usepackage[margin=0.75in]{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+\usepackage{listings}
+\usepackage{imakeidx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{setspace}
+\singlespacing
+
+
+
+\def \DocType{	
+	
+	FINAL REPORT	
+}
+
+
+\lstset{
+  basicstyle=\small\ttfamily,
+ numbers=left,
+  numberstyle=\scriptsize,
+  showspaces=false,
+  showstringspaces=false,
+  breaklines=true
+}
+
+
+
+
+
+% 1. Fill in these details
+\def \CapstoneTeamName{DSCVL-Overcomers}
+\def \CapstoneTeamNumber{69}
+\def \GroupMemberTwo{LUCIEN-ARMAND T. TAMNO}
+%\def \GroupMemberThree{			}
+\def \CapstoneProjectName{Depth sensing with computer vision and lidar}
+\def \CapstoneSponsorCompany{}
+\def \CapstoneSponsorPerson{ D. Kevin McGrath}
+
+
+\usepackage{datetime}
+\newdate{date}{12}{6}{2018}
+\date{\displaydate{date}}
+
+\title{\centering
+			\includegraphics[height=4cm,natwidth=200,natheight=300]{images/osu_logo.eps}\\\vspace{.5in}
+		\scshape{\huge CS CAPSTONE \DocType \\\vspace{.5in}
+		\textbf{\Huge\CapstoneProjectName}\\\vspace{1in}
+		\large	\displaydate{date}\\\vspace{.3in}		
+			\large {Prepared For}\\\vspace{.1in}
+			\textbf{{\Large \CapstoneSponsorPerson}} \\\vspace{.6in}		
+				\large {By} \\\vspace{.1in}
+				\textbf {Group \CapstoneTeamNumber}\\\vspace{.1in}
+				\large {\CapstoneTeamName}\\\vspace{.1in}
+				\textbf{ { \GroupMemberTwo}}
+}  
+}
+
+\IEEEtitleabstractindextext{
+ \begin{abstract}
+This Depth Sensing with Computer Vision and Lidar report describes  the project development from its historical genesis to the final result. The report includes the chronological development,shareholders, participants and their different roles,  technical and management skills learned, as well as reflections.  
+ \end{abstract} 
+ 
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+\IEEEdisplaynontitleabstractindextext
+\IEEEpeerreviewmaketitle
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+\newpage
+	
+\section{Table of Contents}
+\tableofcontents
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+
+ 
+\begin{singlespace}
+	\section{Definitions}
+			\textbf{IR: }\label{def:IR}\par
+		IR stands for the infrared technology.
+
+		\textbf{IR Depth Sensor: }\label{def:depthsensor}\par
+		A device that calculates distances by emitting infrared signals. 
+		
+		\textbf{LIDAR: }\label{def:lidar}\par
+		Light Detection And Ranging - A method that uses lasers to measure distance
+		
+		\textbf{Microsoft Kinect: }\label{def:kinect}\par
+		A product that uses an IR Depth sensor to measure distances.
+		
+		\textbf{Logitech Brio Webcam: }\label{def:brio}\cite{logitech}\par
+		The webcam model this project shall be using.
+		
+		\textbf{RPLidar A1: }\label{def:rplidar}[1]\cite{slamtec}\par
+		A low-cost LIDAR unit that this project shall be using.
+		
+		\textbf{RPLidar Solid-state: }\label{def:rplidar2}\cite{leddartech}\par
+		A High-cost LIDAR unit single direction with better performances of detecting, measuring and locating liquids and people
+	 	
+		
+		\textbf{Computer Vision: }\label{def:vision}\par
+		The methods for acquiring, processing, analyzing, and classifying digital images and extracting information.
+		
+		
+		
+		\textbf{Python/C API: }\label{def:API}\cite{Ctype}\par
+		API: application programming interface between Python and C programs
+		
+		\textbf{DSCVL: }\label{def:DSCVL}\par
+		Acronym that stands for Depth sensing with computer vision and lidar
+
+\end{singlespace}
+
+		
+		
+	\section{Introduction}
+	The DSCVL project today a solution, was originally our client idea to have  a new technology by overlaying two signals from different sources. The first signal  being captured the existing Lidar technology and the second signal coming from a camera technology. Therefore, the goal of project was to turn the descriptive above concept in a viable application to address the gap left by the infrared technology in outdoor environment.
+	
+ In fact, the Lidar technology is  reliable in outdoor environment and capable to provide with precision objects distance measurements. And one of the reliable device uses by this technology is the  16-Segment SOLID-STATE Lidar equipment, at times called the Leddar M16 \ref{def:rplidar2}. The second technology we use in this project is the  webcam  specifically the Logitech Brio Webcam \ref{def:brio} and it is used to get images.  
+  
+More importantly, the fact that the lidar technology ( Leddar M16) was more reliable to provide better objects measurements than the IR technology \ref{def:IR}, was presented to us the ideal technology of choice. so both, Lam and I as suggested by Kevin our client, decided to use it.
+
+\section{Current State of the DSCVL}
+Though, the past winter term progress report described the RPLidar A1 capability  \ref{def:rplidar} of outputting  useful information but the reality is that the DSCVL project  needed some changes for the sake of better accuracy. some changes took place at different level of the project. And the most important being the replacemnt of RPLiadr A1 by the 16 segment solid state M16 that provides better detection, localization, and distance measurements when is to compares to the RPLidar A1.\par
+
+Additionally, those differences can even be more tangible at the code level, because the M16 model has its code literally written in C program while the RPLidar code is closely related to the python environment. And this M16 factor code-based caused me to conduct researches to figure out how can I make the C program code work in python environment. The result of that research was to discover the python \ref{Ctypes} functionality to play the intermediary role of having the C program code runs in a python environment.With the same idea, I dug a little bit more to finally find out that Visual Studio is the suitable Windows application to implement the python/C API.  
+
+ 
+\subsection{ Preliminaries and the Python/C API implementation}
+	\subsubsection{Are there any special hardware, OS, or runtime requirements to run your software?}
+To run the  Leddar M16 technology, I have to implement the python/c API\ref{def:API} using the C-code that was shipped with the M16 device. And to do so, I have to make sure first that  the M16 can properly run in a Windows environment by default. And for me to test that functionality, I installed and configured the default M16 settings, as shown in figure \ref{signal} below.
+
+   \begin{figure}[H]
+			\includegraphics[scale=0.5]{images/signal.eps}
+			\caption{figure}{Leddar M16 outputs distance measurements  using the default windows installation [right] and default M16 screen [left].}
+			\label{signal}
+		\end{figure}
+		
+That figure \ref{signal} displays a sample distance outputs as it is supposed to be visualized by a user at the final stage of the DSCVL project. Though, differences may be seen in term of data disposition on the screen,because the M16 code has to run in conjunction with webcam technology to overlay images form the python environment. Hence, the implementation of the DSCVL application has an additional technological constraint to be done via an API.
+		
+		\subsubsection{How does your project work?}
+		
+To get the written C++ language code to python, the Visual studio 2017 application was the relevant tool to use. Therefore, I installated  visual Studio in Windows 10 system, imported any necessary library to connect the visual Studio  to the Leddar M16 C-code,using the appropriate \cite{Microsoft} documentation related to the topic. 
+The remaining bulk of work is  to write and debug the API implementation code to make sure the M16 interacts properly from the visual studio perspective and secondly, to integrate in a single package the python and the M16 C codes, as shown in figure \ref{python-Cpp}.
+
+ \begin{figure}[H]
+			\includegraphics[scale=0.5]{images/python-Cpp.eps}
+			\caption{figure}{Python/C API built in Visual Studio 2017.}
+			\label{python-Cpp}
+		\end{figure}
+		
+		
+However, when working on the  above API, I encountered multiple setbacks.among others, the two most important issues are:the slight Leddar M16  differences seen in the the M16 files, for instance I had to change one default header, as shown in figure \ref{change-M16} below.
+
+ \begin{figure}[H]
+ \centering
+			\includegraphics[scale=0.5]{images/change-M16.eps}
+			\caption{figure}{Snippet code changed in the Leddar M16 header file.}
+			\label{change-M16}
+		\end{figure}
+
+And the worst being found in the current debugging phase that presents a successful result in code checker but generates several linkage errors.  
+
+Finally, I also wrote an additional decorator function in the python module to speed up the python execution module as shown in figure \ref{change-M16}here underneath.
+
+ \begin{figure}[H]
+ \centering
+			\includegraphics[scale=0.5]{images/python-ext.eps}
+			\caption{figure}{Python decorators code.}
+			\label{python-code}
+		\end{figure}
+		
+		
+\subsection{ Legacy: GUI Interface}
+
+In order to prioritize the DSCVL backend, the Frontend was relegated because the backend is more important and represent the project core functionality as envisioned in the final stage. The GUI downgrade, yet still provides the basic services it has before, but it is not clear whether the final DSCVL system would make use of the legacy graphical user interface.
+		
+		 
+
+\section{Final Gantt Chart}
+
+ \begin{figure}[H]
+ \centering
+			\includegraphics[scale=1]{images/gantt.eps}
+			\caption{figure}{Final Gantt Chart}
+			\label{gantt}
+		\end{figure}
+			
+\section{Design Document}
+
+\include{designdocument}
+
+\section{Weekly Blog Posts over six Months}
+\include{weeklyblocks}
+
+\subsection{How does one run it?}
+The Python/C++ API run but the module python to handle the call function from API accuses a Windows Visual Studio issue.
+ 
+\subsection{What web sites were helpful?}
+This needs to be detailed enough to recreate and/or use your project!\par
+\subsection{Recommended Technical Resources for Learning More}
+To dive into this topic, one can use links provided in the appendix section to learn more about the topic.
+
+\subsection{What web sites were helpful?}
+The bulk of the this project from start to finish was mostly done using websites as listed underneath. the first set of websites consists of sites used to develop the Python/C API and the second set lists sites related to libraries for python module.
+\subsubsection{websites for the python/Cpp API}
+\begin{enumerate}
+\item python/C++ API guidelines Using Visual Studio[1]
+\item Download File Leddard M16 [2]
+\item Install Visual Studio 2017 [3]
+\item Building C and C++ Extensions[4]
+\item  Foreign function  library for Python[5]
+\end{enumerate}
+\subsubsection{other libraries for python}
+\begin{enumerate}
+\item OpenCV[6]
+\item Numpy [7]
+\end{enumerate}
+
+
+
+\subsection{reference books really Helped}
+Basically,some of the books I was able to glimpse a book Advance C++ programming[8]. But as I have said it in the section website that helped the most and my research was carried out via internet, on Windows web pages, python repositories and others like Github repository.
+ 
+
+\subsection{Other Party Involvement}
+When is to say who else was involved in this project except my teammate, I have to admit the fact that our client was helpful by providing some guidelines and paths for me to look into. I received from our client the main website in which all the first instructions related to the python/C API implementation could be found. And from that point on, though most of the student did not have any past experience with python and C working in visual studio IDE, I found one graduate student o whom I showed the python error to recognize the extension module from C and He tried to provide some instructions unfortunately that did not work.
+
+
+\section{Conclusion}
+Over the course of this project I was able to the first able to implement resident application API in windows environment, integrate  python module in visual studio by specially customizing Python environment to work in Windows. Additionally, I was able to  to engage in research activities whenever the project was not working to get the project going by googling or reading in other material suitable for the area of the project.
+
+For non-technical skills, I learned to work in a team by considering the perspectives of the other group member. But beyond that, I learned to ask help by clearly explaining to the person to whom I needed help from, the challenge I was facing. Due to the hidden hurdles that he project work presented to me. And to elaborate about the project work, one of the key point i would always remember is that a project does not only need technical skills to be successful, but also non-technical skills  as well. It is submitted to my attention to be solve  but more importantly, it is an opportunity to learn new skills, to explore new ways to work with others, to accept inputs from them changes and adapt to those transformations that presented to me either as an advice or a reproach. The latter, can only be possible in a teamwork environment and good management is the way to go. By Management I mean, to learn how to handle stress that can be imposed to you by the amount work to do or the speed at which that work has to be done.  
+
+Finally, if I could go back and do this project all over this project, the first thing i would do is to get started on the python/C API because this module appear to be straightforward to implement but unfortunately that is not the case, Because the module has hidden aspects like how Visual studio interacts with Windows platform to provide services in python environment, which is one important phase of the python/C API development in Windows system. 
+
+
+\section{Appendix}
+[1]\hyperlink{https://docs.microsoft.com/en-us/visualstudio/python/working-with-c-cpp-python-in-visual-studio}{python/C++ API guidelines Using Visual Studio}
+
+[2]\hyperlink{https://support.leddartech.com/downloads/files/91-leddarinstaller-exe}{Download File Leddard M16}
+
+[3]\hyperlink{ https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio}{Install Visual Studio 2017}
+
+[4]\hyperlink{https://docs.python.org/3/library/ctypes.html\# loading-shared-libraries}{Foreign function  library for Python}
+
+[5]\hyperlink{https://docs.python.org/3/extending/building.html}{Foreign function  library for Python}
+
+[6]: \hyperlink{https://www.lfd.uci.edu/\~gohlke/pythonlibs/\#opencv}{OpenCV} 
+ 
+ [7]: \hyperlink{https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html}{Numpy}
+ 
+ [8] \hyperlink {http://www.cs.ukzn.ac.za/~hughm/ap/notes/apNotes.pdf}{advance C++ programming}
+[9]: \hyperlink{https://wiki.python.org/moin/GuiProgramming} {legacy GUI}
+
+[10]: \hyperlink{https://pypi.python.org/pypi/rplidar}{rplidar}
+
+
+
+ 
+
+
+ 
+ 
+
+\end{document}

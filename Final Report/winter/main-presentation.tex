@@ -1,0 +1,105 @@
+\documentclass{beamer}
+
+
+\usepackage{setspace}
+\singlespacing
+
+
+\mode<presentation>
+{
+    \usetheme{Warsaw}
+    \setbeamertemplate{frame numbering}[fraction]
+    \definecolor{Luciencapstone}{rgb}{.36,.54,.66}
+    \usecolortheme[named = Luciencapstone]{structure} 
+   
+
+}
+
+	\title[]{\Large Winter Progress Presentation\\\vspace{1 in}
+		\textbf{DEPTH SENSING USING COMPUTER VISION AND LIDAR}\\\vspace{10pt}}
+	\large \author{Prepared By: Lucien Tamno}
+	\institute{Oregon State University}
+
+
+
+\usepackage{datetime}
+\newdate{date}{21}{3}{2018}
+\date{\displaydate{date}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%first presentation slide
+\begin{frame}[t]{ The  DSCVL Project List Description } \vspace{.5in}
+\begin{description}
+\item [Recaps]: The project purpose and goal
+\item [status]: The current stage on the project
+\item [barriers]: Problems  impeding the project progress
+\item [solutions]: solutions to overcome the current barriers
+\item [History]: Retrospective of the past 10 weeks
+\end{description}
+\end{frame}
+
+
+% second presentation slide
+\begin{frame}[t]{The project purpose and goals}\vspace{1in}
+
+\begin{enumerate}
+
+\item \large Midterm winter progress report recap 
+	   
+\item\large The last two to three weeks of the progress
+
+\end{enumerate}
+\end{frame}
+
+% third presentation slide
+\begin{frame}[t]{The  current status of the project}\vspace{.5in}
+\begin{itemize}
+\item Frontend: GUI Python 
+\item Backend OpenCV capture Video and storage frames 
+\item Initial graph of data from the Lidar Scanner ( array of data ) 
+\item Functions to trace object movements with the lidar device
+\end{itemize}
+\end{frame}
+
+
+
+% four presentation slide
+\begin{frame}[t]{Problems impeding progress}\vspace{.5in}
+\begin{itemize}
+\item experimental  Tests needed to assert lidar data.
+\item combination of data from the lidar and the webcam
+\item  Problem of the  appJar  library documentation 
+\end{itemize}
+\end{frame}
+
+
+%forth presentation slide
+\begin{frame}[t]{Attempted Solutions}\vspace{.5in}
+\begin{enumerate}
+\item Usage of the  python tkinter library 
+\item Future Use of the Euclidean distance functions  
+\end{enumerate}
+\end{frame}
+
+
+% fifth presentation slide
+\begin{frame}[t]{retrospective of the past 10 weeks}
+\begin{enumerate}
+\item descriptions of preliminary results present 
+\item description of first user study and results 
+\item images of the project and screen shots  
+\end{enumerate}
+
+\huge\centering\ END 
+\end{frame}
+ 
+
+
+
+
+\end{document}
